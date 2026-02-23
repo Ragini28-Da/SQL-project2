@@ -34,43 +34,7 @@ df.columns=df.columns.str.lower()
 
 #print(df[['Discount_Applied','Promo_Code']].head(10))
       
-import mysql.connector
 
-# 1️⃣ Connect to MySQL
-conn = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="ragha",
-    database="company_db"
-)
 
-cursor = conn.cursor()
 
-# 2️⃣ Create table if it doesn't exist
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS students (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50),
-    age INT
-)
-""")
-
-# 3️⃣ Insert data
-data = [
-    ("Bob", 15),
-    ("Charlie", 17),
-    ("Diana", 16),
-    ("Rasha", 20),
-    ("Aden", 25),
-    ("Ben", 22)
-]
-
-sql = "INSERT INTO students (name, age) VALUES (%s, %s)"
-cursor.executemany(sql, data)
-conn.commit()
-print(f"{cursor.rowcount} rows inserted successfully ✅")
-
-# 4️⃣ Close connection
-cursor.close()
-conn.close()
 
